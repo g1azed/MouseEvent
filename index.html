@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> customMouse </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+        window.onload = function () {
+            var mouseCursor = document.querySelector(".cursor");
+            var follower = document.querySelector(".cursor_follower");
+            var navLinks = document.querySelectorAll(".gnbMenu li");
+            navLinks.forEach(function (menu) {
+                console.log(menu);
+                menu.addEventListener("mouseover", function () {
+                    console.log("over");
+                    mouseCursor.classList.add("link_hover"); // 마우스오버가 됬을때 link_hover 클래스를 추가해라
+                });
+                menu.addEventListener("mouseleave", function () {
+                    console.log("over");
+                    mouseCursor.classList.remove("link_hover"); // 마우스오버가 빠졌을때 link_hover 클래스를 제거해라
+                });
+            });
+            function myCursor(e) { // 함수의 ()안은 매개인자  뭘 넣어도 나옴
+                mouseCursor.style.top = e.pageY + "px"; // 0이 아니면 단위값 무조건 사용해줘야한다
+                mouseCursor.style.left = e.pageX + "px";
+
+            }
+            window.addEventListener("mousemove", myCursor); //이벤트에서 호출
+
+            function Trailer(e) {
+                // console.log(e);
+
+                gsap.to(mouseCursor, { duration: 0.3, left: e.pageX - 5, top: e.pageY - 5 });
+                gsap.to(follower, { duration: 0.8, left: e.pageX - 15, top: e.pageY - 15 });
+
+                document.querySelector("#W").forEach(e => {
+                    // console.log(e);
+                    e.addEventListener("mouseover", () => {
+                        mouseCursor.classList.add("show");
+                        follower.classList.add("show");
+                    });
+                    e.addEventListener("mouseout", () => {
+                        cursor.classList.remove("show");
+                        follower.classList.remove("show");
+                    });
+                });
+
+            }
+            document.addEventListener("mousemove", Trailer);
+
+
+
+        }
+
+
+
+
+
+    </script>
+    <style>
+        * {
+            /* 초기화코드 : 보통은 * 로하지만 필요한 애들만 사용가능 */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+            /*width,height border값까지*/
+        }
+
+        body {
+            background-image: url(./img/main2.png);
+            background-size: cover;
+            overflow: hidden;
+            cursor :none; 
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 80px;
+        }
+
+        /* nav h1, .gnbMenu{
+            border: 3px solid blue;
+        } */
+        #W {
+            font-size: 40px;
+            margin-left: 50px;
+        }
+
+        .gnbMenu {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .gnbMenu li {
+            margin: 0 60px;
+            padding: 0 20px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .cursor {
+            width: 30px;
+            height: 30px;
+            border: 2px solid white;
+            border-radius: 50%;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            right: 0;
+            transform: translate(-50%, -50%);
+            transform-origin: 100% 100%;
+            transition: transform 0.5s ease;
+            /* transition-property: background, trnasform ;  transition: all 일때 사용 */
+            /* backdrop-filter: grayscale(); */
+            backdrop-filter: blur(3px);
+
+        }
+
+        .cursor_follower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            user-select: none;
+            pointer-events: none;
+            transition: transform 0.6s ease-in-out, opacity 0.2s ease-in-out;
+        }
+
+        .cursor.show {
+            opacity: .5;
+            transform: scale(1);
+            background: rgba(255, 51, 0, 1);
+        }
+
+        .cursor_follower.show {
+            transform: scale(5);
+            background: rgba(255, 51, 0, 0.6);
+        }
+
+        .link_hover {
+            width: 60px;
+            height: 60px;
+            transform: scale(2);
+            background-color: rgb(0, 0, 0.5);
+        }
+        #M1:hover{
+            color: red;
+            font-weight: bold;
+        }
+
+        #profileSection img {
+            position: relative;
+            /*그럼 relative를 줘서 대충 포지션값이 있다~ 라고 넣어줌*/
+            z-index: -3;
+            /*z-index 는 position값을 줘야 먹힘*/
+        }
+
+        #iND {
+            width: 500px;
+            height: auto;
+            margin-left: 1300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor"> </div>
+    <div class="cursor_follower"></div>
+    <header>
+        <nav>
+            <h1 id="W"> <a href=""> I NEVER DIE </a> </h1>
+            <ul class="gnbMenu">
+                <li> <a id="M1" href=""> Member </a></li>
+                <li> <a id="M2" href=""> Outfit </a></li>
+                <li> <a id="M3" href=""> Movie </a></li>
+                <li> <a id="M4" href=""> Story </a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section id="profileSection">
+
+        <article>
+            <img id="iND" src="./img/ineverdie.png">
+        </article>
+    </section>
+
+
+    <footer> </footer>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> customMouse </title>
+    <script>
+        // 로드이벤트 : 모든 태그, 이미지등이 로드되면 실행되는 이벤트
+        // window.onload = function () {
+        //     // console.log("load");
+        //     // console.log(document.getElementsByClassName("gnbMenu"));
+        //     // console.log(document.getElementById("W"));
+        // }
+        // document.getElementById("W").onclick = function () {
+        //     console.log("hihi");
+        //     // getElementByTagName 으로는 이벤트 발생이 안됌 참고 
+        // }
+        console.log(document.getElementsByTagName("h1"));
+        console.log(document.getElementById("W"));
+        // onload 이벤트에 항상 넣어놔야 자바스크립트가 아이디,클래스를 인식할 수 잇음
+
+        window.onload = function(){
+            console.log("load1");
+            // window.addEventListener("mousemove", function(){
+            //     console.log("마우스움직여");
+            // }
+                // 함수선언
+            function myCursor(e){ // 함수의 ()안은 매개인자  뭘 넣어도 나옴
+                // console.log("myCursor 함수");
+                // console.log(e);
+                // console.log("X" + e.clientX);
+                // console.log("Y" + e.pageY);
+
+                // console.log(document.getElementsByClassName("cursor"));
+                // console.log(document.getElementById("my_cursor"));
+                // console.log("----------")
+                // console.log(document.querySelector(".cursor"));
+                // console.log(document.querySelector("#my_cursor"));
+                // // = $(".cursor");   $("#my_cursor");
+
+                document.querySelector(".cursor").style.top = e.pageY + "px"; // 0이 아니면 단위값 무조건 사용해줘야한다
+                document.querySelector(".cursor").style.left = e.pageX + "px"; 
+                
+            }
+               // 함수 호출
+            // myCursor();
+            window.addEventListener("mousemove", myCursor); //이벤트에서 호출
+        }
+
+        // window.onload = function(){
+        //     console.log("load2");
+        // } // onload 이벤트는 한번만 인식댐
+
+
+
+
+    </script>
+    <style>
+        h1,h2,h3,h4,h5,h6,p, ul,li,ol{        /* 초기화코드 : 보통은 * 로하지만 필요한 애들만 사용가능 */
+            margin: 0;
+            padding: 0;
+            box-sizing : border-box; /*width,height border값까지*/
+        }
+        body {
+            background-image: url(./img/bg_1.jpg);
+            background-size: cover;
+            /* cursor :none; */
+        }
+        nav{
+
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        /* nav h1, .gnbMenu{
+            border: 3px solid blue;
+        } */
+        .gnbMenu{
+            display: flex;
+            list-style-type: none;
+        }
+        .gnbMenu li{
+            margin: 0 60px;
+        }
+        a{ 
+            color: white;
+            text-decoration: none;
+        }
+
+        .cursor {
+            width: 30px;
+            height: 30px;
+            border: 2px solid black;
+            border-radius: 50%;
+
+            position: absolute;
+            top:0; right:0;
+            transform: translate(-50%, -50%);
+            transform-origin: 100% 100%;
+        }
+        .link_hover{
+            transform: scale(2);
+            background-color: rgb(0,0,0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor" > </div>
+    <div class="cursor_follower"></div>
+    
+    <header>
+        <nav>
+            <h1 id="W"> <a href=""> W_LOG</a> </h1>
+            <ul class="gnbMenu">
+                <li> <a href=""> work </a></li>
+                <li> <a href=""> profile </a></li>
+                <li> <a href=""> contact </a></li>
+                <li> <a href=""> story </a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <section>
+        <h2> Profile </h2>
+        <article>
+            <h3> SUJI </h3>
+            <p> <a href="mailto:victoria1230120@gmail.com"> E-mail </a> <br />
+                <a href="https://github.com/g1azed/g1azed" target="_blank"> Github </a>
+            </p>
+            <img src="./img/photo.jpg" alt="프로필 이미지" style="width:300px">
+        </article>
+    </section>
+
+
+    <footer> </footer>
+</body>
+
+</html>

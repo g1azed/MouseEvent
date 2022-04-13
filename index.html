@@ -36,7 +36,7 @@
                 gsap.to(mouseCursor, { duration: 0.3, left: e.pageX - 5, top: e.pageY - 5 });
                 gsap.to(follower, { duration: 0.8, left: e.pageX - 15, top: e.pageY - 15 });
 
-                document.querySelector("#W").forEach(e => {
+                document.querySelector("li").forEach(e => {
                     // console.log(e);
                     e.addEventListener("mouseover", () => {
                         mouseCursor.classList.add("show");
